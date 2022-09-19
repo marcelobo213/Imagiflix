@@ -5,14 +5,10 @@ import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons
 
 import mockData, {Movie} from "../data/mock";
 
+import Poster from './Poster';
 
+import './Carousel.css'
 
-const Poster = ({ cover, title, score }:Movie, index: number) => (
-    <article key={index}>
-        <img src={cover} alt={title} />
-    </article>
-
-);
 
 interface CarouselData {
     title?: string;
@@ -26,7 +22,7 @@ const Carousel = ({title = 'Filmes em destaque',data = mockData}: CarouselData) 
     };
 
     const SlickArrow = ({ direction, onClick }: {direction : Direction, onClick?: () => void}) => (
-        <button type="button" className={`absolute w-16 h-full z-10 top-0 bg-black bg-opacity-50 
+        <button type="button" className={`absolute w-16 h-full z-10 top-0 bg-black bg-opacity-30 
         ${direction ? 'right-0' : 'left-0' }`} onClick={onClick}>
              
             <FontAwesomeIcon icon={direction  ? faChevronRight : faChevronLeft} size='2x'/>
@@ -42,7 +38,7 @@ const Carousel = ({title = 'Filmes em destaque',data = mockData}: CarouselData) 
     };
 
     return (
-        <section>
+        <section className="carousel">
             <h2 className="relative font-bold text-2xl ml-8 mb-4">{title}</h2>
             <Slick className="relative mb-8"{...options}>{data.map( (movie, index) => Poster(movie, index))}</Slick>
         </section>
